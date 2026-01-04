@@ -3,67 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pro Cloud Calendar</title>
+
 <title>denotakvimo</title>
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/googleusercontent/image_generation_content/main/0.png">
-<meta name="apple-mobile-web-app-title" content="denotakvimo">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
-<style>
-:root {
-  --glass-bg: rgba(255, 255, 255, 0.15);
-  --glass-blur: 15px;
-  --text-color: #ffffff;
-  --accent: #6c7cff;
-}
-<title>denotakvimo</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="denotakvimo">
 
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root {
+  --glass-bg: rgba(255,255,255,0.15);
+  --glass-blur: 15px;
+  --text-color: #ffffff;
+  --accent: #6c7cff;
+}
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: #2c3e50; /* Varsayılan renk */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #2c3e50;
   color: var(--text-color);
   height: 100vh;
-  overflow: hidden;
-  transition: background 0.5s ease;
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0,0.4);
   height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
 }
 
 header {
-  padding: 15px 25px;
+  padding: 15px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(20px);
 }
 
-.settings-bar {
-  display: flex;
-  gap: 15px;
-  align-items: center;
+header button {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
 }
 
 .calendar-container {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  flex: 1;
   padding: 15px;
 }
 
@@ -72,7 +62,6 @@ header {
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   font-weight: bold;
-  padding: 10px 0;
   opacity: 0.8;
 }
 
@@ -81,133 +70,84 @@ header {
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 8px;
-  height: 100%;
+  margin-top: 10px;
 }
 
 .day {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 8px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: 0.2s;
-  position: relative;
 }
 
-.day:hover { background: rgba(255,255,255,0.25); }
-.day.selected { border: 2px solid white; background: rgba(255,255,255,0.3); }
+.day.selected {
+  outline: 2px solid white;
+}
 
-.day-number { font-weight: bold; font-size: 1.1rem; margin-bottom: 4px; }
+.day-number {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
 
 .inner-event {
-  background: rgba(0, 0, 0, 0.3);
   font-size: 0.7rem;
+  background: rgba(0,0,0,0.35);
   padding: 2px 5px;
   border-radius: 4px;
   margin-bottom: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   border-left: 2px solid var(--accent);
 }
 
 .bottom-panel {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0,0,0,0.7);
   backdrop-filter: blur(30px);
-  padding: 20px;
+  padding: 15px;
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.input-group {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-}
-
-.event-list-detail {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 5px;
-}
-
-.mini-event-card {
-  background: rgba(255,255,255,0.1);
-  padding: 5px 10px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
   gap: 8px;
-  font-size: 0.8rem;
-  white-space: nowrap;
 }
 
-.delete-btn {
-  background: #ff4757;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 2px 6px;
-}
-
-input, select, button {
+input, button {
   background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: none;
   color: white;
   padding: 10px;
   border-radius: 8px;
-  outline: none;
 }
 
-button.primary { background: white; color: black; font-weight: bold; }
-input[type="color"] { width: 40px; height: 40px; padding: 0; border: none; cursor: pointer; background: none; }
-#bgInput { display: none; }
+button {
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+
 .empty { visibility: hidden; }
 </style>
 </head>
+
 <body>
-
 <div class="overlay">
-  <header>
-    <div>
-      <button onclick="changeMonth(-1)">◀</button>
-      <span id="monthYear" style="font-size: 1.2rem; font-weight: bold; margin: 0 15px;"></span>
-      <button onclick="changeMonth(1)">▶</button>
-    </div>
-    
-    <div class="settings-bar">
-      <span>Arka Plan:</span>
-      <input type="color" id="colorPicker" title="Renk Seç">
-      <label for="bgInput" style="cursor: pointer; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 8px;">🖼️ Resim</label>
-      <input type="file" id="bgInput" accept="image/*">
-    </div>
-  </header>
 
-  <div class="calendar-container">
-    <div class="weekdays">
-      <div>Pzt</div><div>Sal</div><div>Çar</div><div>Per</div><div>Cum</div><div>Cts</div><div>Paz</div>
-    </div>
-    <div id="calendar"></div>
-  </div>
+<header>
+  <button onclick="changeMonth(-1)">◀</button>
+  <strong id="monthYear" style="margin:0 12px"></strong>
+  <button onclick="changeMonth(1)">▶</button>
+</header>
 
-  <div class="bottom-panel">
-    <div id="dayDetail">
-      <strong id="selectedLabel">Gün Seçin:</strong>
-      <div id="eventListDetail" class="event-list-detail"></div>
-    </div>
-    
-    <div class="input-group">
-      <input type="time" id="timeInput">
-      <input type="text" id="textInput" placeholder="Yeni etkinlik ekle..." style="flex-grow: 1;">
-      <button class="primary" onclick="saveEvent()">Ekle</button>
-    </div>
+<div class="calendar-container">
+  <div class="weekdays">
+    <div>Pzt</div><div>Sal</div><div>Çar</div>
+    <div>Per</div><div>Cum</div><div>Cts</div><div>Paz</div>
   </div>
+  <div id="calendar"></div>
+</div>
+
+<div class="bottom-panel">
+  <input type="time" id="timeInput">
+  <input type="text" id="textInput" placeholder="Etkinlik">
+  <button onclick="saveEvent()">Ekle</button>
+</div>
+
 </div>
 
 <script>
@@ -215,121 +155,62 @@ let current = new Date();
 let selectedDate = null;
 const events = JSON.parse(localStorage.getItem("events")) || {};
 
-window.onload = () => {
-  const savedBg = localStorage.getItem("customBg");
-  const savedColor = localStorage.getItem("customColor");
-  if(savedBg) {
-    document.body.style.backgroundImage = `url(${savedBg})`;
-  } else if(savedColor) {
-    document.body.style.background = savedColor;
-  }
-  renderCalendar();
-};
+function renderCalendar() {
+  const cal = document.getElementById("calendar");
+  cal.innerHTML = "";
 
-// RENK SEÇİMİ
-document.getElementById('colorPicker').oninput = (e) => {
-  const color = e.target.value;
-  document.body.style.backgroundImage = "none";
-  document.body.style.backgroundColor = color;
-  localStorage.setItem("customColor", color);
-  localStorage.removeItem("customBg");
-};
-
-// RESİM YÜKLEME
-document.getElementById('bgInput').onchange = (e) => {
-  const reader = new FileReader();
-  reader.onload = () => {
-    document.body.style.backgroundImage = `url(${reader.result})`;
-    localStorage.setItem("customBg", reader.result);
-  };
-  reader.readAsDataURL(e.target.files[0]);
-};
-
-function renderCalendar(){
-  const calendar = document.getElementById("calendar");
-  const monthYear = document.getElementById("monthYear");
-  calendar.innerHTML="";
-  
-  const y=current.getFullYear(), m=current.getMonth();
-  monthYear.textContent = current.toLocaleDateString("tr",{month:"long",year:"numeric"});
+  const y = current.getFullYear();
+  const m = current.getMonth();
+  document.getElementById("monthYear").textContent =
+    current.toLocaleDateString("tr",{month:"long",year:"numeric"});
 
   const first = new Date(y,m,1).getDay() || 7;
   const total = new Date(y,m+1,0).getDate();
 
-  let day=1;
-  for(let i=1; i<=42; i++){
+  let day = 1;
+  for(let i=1;i<=42;i++){
     const cell = document.createElement("div");
     if(i < first || day > total){
       cell.className = "day empty";
     } else {
-      const dKey = `${y}-${m+1}-${day}`;
+      const key = `${y}-${m+1}-${day}`;
       cell.className = "day";
-      if(selectedDate === dKey) cell.classList.add("selected");
-      
-      let eventsHTML = "";
-      if(events[dKey]){
-        events[dKey].forEach(ev => {
-          eventsHTML += `<div class="inner-event">${ev.time} ${ev.text}</div>`;
-        });
-      }
+      if(key === selectedDate) cell.classList.add("selected");
 
-      cell.innerHTML = `<div class="day-number">${day}</div><div style="flex-grow:1; overflow:hidden;">${eventsHTML}</div>`;
-      const d = day;
-      cell.onclick = () => selectDay(d, dKey);
+      let evHTML = "";
+      (events[key]||[]).forEach(e=>{
+        evHTML += `<div class="inner-event">${e.time} ${e.text}</div>`;
+      });
+
+      cell.innerHTML = `<div class="day-number">${day}</div>${evHTML}`;
+      cell.onclick = () => { selectedDate = key; renderCalendar(); };
       day++;
     }
-    calendar.appendChild(cell);
-  }
-}
-
-function selectDay(day, dKey){
-  selectedDate = dKey;
-  document.getElementById("selectedLabel").textContent = day + " " + document.getElementById("monthYear").textContent + " Etkinlikleri:";
-  updateEventList();
-  renderCalendar();
-}
-
-function updateEventList(){
-  const listDiv = document.getElementById("eventListDetail");
-  listDiv.innerHTML = "";
-  if(events[selectedDate]){
-    events[selectedDate].forEach((ev, index) => {
-      const card = document.createElement("div");
-      card.className = "mini-event-card";
-      card.innerHTML = `<span>${ev.time} - ${ev.text}</span> <button class="delete-btn" onclick="deleteEvent(${index})">✕</button>`;
-      listDiv.appendChild(card);
-    });
-  } else {
-    listDiv.innerHTML = "<small>Etkinlik yok.</small>";
+    cal.appendChild(cell);
   }
 }
 
 function saveEvent(){
-  const time = document.getElementById("timeInput").value;
-  const text = document.getElementById("textInput").value;
-  if(!selectedDate) return alert("Önce gün seçin!");
-  if(!time || !text) return alert("Saat ve metin girin!");
+  if(!selectedDate) return alert("Önce gün seç");
+  if(!timeInput.value || !textInput.value) return;
 
   events[selectedDate] = events[selectedDate] || [];
-  events[selectedDate].push({time, text});
-  localStorage.setItem("events", JSON.stringify(events));
-  document.getElementById("textInput").value = "";
-  updateEventList();
-  renderCalendar();
-}
+  events[selectedDate].push({
+    time: timeInput.value,
+    text: textInput.value
+  });
 
-function deleteEvent(index){
-  events[selectedDate].splice(index, 1);
-  if(events[selectedDate].length === 0) delete events[selectedDate];
   localStorage.setItem("events", JSON.stringify(events));
-  updateEventList();
+  textInput.value = "";
   renderCalendar();
 }
 
 function changeMonth(n){
-  current.setMonth(current.getMonth()+n);
+  current.setMonth(current.getMonth() + n);
   renderCalendar();
 }
+
+renderCalendar();
 </script>
 </body>
 </html>
